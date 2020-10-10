@@ -1,0 +1,6 @@
+project('tuxdaw', 'c')
+gtkdep = dependency('gtk4')
+gstreamerdep = dependency('gstreamer-1.0')
+gstvideodep = dependency('gstreamer-video-1.0')
+subdir('gui')
+executable('tuxdaw', 'main.c', gui_sources, dependencies : [gtkdep, gstreamerdep, gstvideodep])

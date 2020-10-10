@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="tuxdaw" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output=".build/Debug/tuxdaw" prefix_auto="1" extension_auto="1" />
+				<Option object_output=".build/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output=".build/tuxdaw" prefix_auto="1" extension_auto="1" />
+				<Option object_output=".build/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`pkg-config gtk4 --cflags`" />
+		</Compiler>
+		<Linker>
+			<Add option="`pkg-config gtk4 --libs`" />
+		</Linker>
+		<Unit filename="gui/browser.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gui/browser.h" />
+		<Unit filename="gui/container.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gui/container.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="gui/sequencer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gui/sequencer.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="gui/shared.h" />
+		<Unit filename="gui/titlebar.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gui/titlebar.h" />
+		<Unit filename="gui/webcam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gui/webcam.h" />
+		<Unit filename="gui/window.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gui/window.h" />
+		<Unit filename="gui/workarea.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="gui/workarea.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
