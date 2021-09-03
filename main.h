@@ -13,8 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *
- * main.h created 20 May 2020 at 12:14:34
  */
 
 #ifndef MAIN_H_
@@ -29,8 +27,11 @@ GdkDisplayManager *dispmanager;
 GdkMonitor *monitor, *projector;
 GdkRectangle geometry;
 GdkSeat *seat;
+GtkIconTheme *theme;
 GListModel *monitors;
 GSList *displays;
+GtkStyleContext *context;
+GtkCssProvider*provider;
 
 extern void init_logowindow(), init_mainwindow();
 

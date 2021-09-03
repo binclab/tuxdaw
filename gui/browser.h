@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 Bret Joseph Antonio
+ * Copyright (C) 2020  Bret Joseph Antonio
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,8 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *
- * browser.h created 31 May 2020 at 17:28:49
  */
 
 #ifndef GUI_BROWSER_H_

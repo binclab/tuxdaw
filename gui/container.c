@@ -17,7 +17,7 @@
 
 #include "container.h"
 
-gboolean animate = TRUE;
+gboolean animate = FALSE;
 double startx, starty, cursorx, cursory;
 static GParamSpec *plugin_container_props[NUM_PROPERTIES];
 
@@ -27,13 +27,16 @@ G_DEFINE_TYPE_WITH_CODE(TuxdawPluginContainer, tuxdaw_plugin_container, GTK_TYPE
 static void tuxdaw_plugin_container_init(TuxdawPluginContainer *container)
 {
   container->header = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-  container->body = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
+  container->body = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
   container->gesture = gtk_gesture_drag_new();
-  container->dragger = gtk_label_new(NULL);
+  container->title = gtk_label_new(NULL);
+  gtk_widget_add_css_class((GtkWidget *)&container->parent, "bordered");
+  gtk_widget_add_css_class(container->header, "botborder");
+  gtk_widget_add_css_class(container->header, "greyback");
   gtk_widget_set_size_request((GtkWidget *)&container->parent, 640, 480);
-  gtk_widget_add_controller(container->dragger, (GtkEventController *)container->gesture);
-  gtk_widget_set_hexpand(container->dragger, TRUE);
-  gtk_box_append((GtkBox *)container->header, container->dragger);
+  gtk_widget_add_controller(container->title, (GtkEventController *)container->gesture);
+  gtk_widget_set_hexpand(container->title, TRUE);
+  gtk_box_append((GtkBox *)container->header, container->title);
   gtk_box_append(&container->parent, container->header);
   gtk_box_append(&container->parent, container->body);
   g_signal_connect(container->gesture, "drag-begin", (GCallback)plugin_drag_begin, container);
@@ -115,26 +118,33 @@ void plugin_drag_begin(GtkGestureDrag *gesture,
                        gdouble start_x, gdouble start_y, TuxdawPluginContainer *plugin)
 {
   GdkCursor *mouse = gdk_cursor_new_from_name("grab", NULL);
-  gtk_widget_set_cursor(plugin->dragger, mouse);
+  gtk_widget_set_cursor(plugin->title, mouse);
   gtk_fixed_get_child_position((GtkFixed *)fixed, (GtkWidget *)plugin, &startx, &starty);
 }
 
 void plugin_drag_update(GtkGestureDrag *gesture,
                         gdouble offsetx, gdouble offsety, TuxdawPluginContainer *plugin)
 {
-  startx = coordinate(startx + offsetx);
-  starty = coordinate(starty + offsety);
+
   if (animate)
+  {
+    startx = coordinate(startx + offsetx);
+    starty = coordinate(starty + offsety);
     gtk_fixed_move((GtkFixed *)fixed, (GtkWidget *)plugin, startx, starty);
+  }
 }
 
 void plugin_drag_end(GtkGestureDrag *gesture,
-                     gdouble start_x, gdouble start_y, TuxdawPluginContainer *plugin)
+                     gdouble offsetx, gdouble offsety, TuxdawPluginContainer *plugin)
 {
   GdkCursor *mouse = gdk_cursor_new_from_name("default", NULL);
-  gtk_widget_set_cursor(plugin->dragger, mouse);
+  gtk_widget_set_cursor(plugin->title, mouse);
   if (!animate)
+  {
+    startx = coordinate(startx + offsetx);
+    starty = coordinate(starty + offsety);
     gtk_fixed_move((GtkFixed *)fixed, (GtkWidget *)plugin, startx, starty);
+  }
 }
 
 double coordinate(double size)

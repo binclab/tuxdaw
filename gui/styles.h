@@ -15,18 +15,40 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef GUI_WINDOW_H_
-#define GUI_WINDOW_H_
+#ifndef GUI_STYLES_H_INCLUDED
+#define GUI_STYLES_H_INCLUDED
 
-#include "shared.h"
+const char *styles =
+    ".bordered{"
+    "    border: 1px solid silver;"
+    "    border-radius: 5px;"
+    "}"
 
-void init_mainwindow();
-void init_logowindow();
+    ".botborder{"
+    "    border-bottom: 1px solid silver;"
+    "}"
 
-static void get_managers(), check_projector();
+    ".greyback{"
+    "    background: grey;"
+    "}"
 
-static bool set_surface();
-GtkWidget *logowindow, *mainwindow, *extrawindow, *mainbox, *mainpane;
-GdkSurface *surface;
+    ".plugintitle{"
+    "    color: white;"
+    "    font-weight: bold;"
+    "    font-size: 14pt;"
+    "    font-family: cursive;"
+    "}"
 
-#endif /* GUI_WINDOW_H_ */
+    ".toggle#StepButton{"
+    "    background: blue;"
+    "}"
+
+    ".bluestepbtn{"
+    //"    background: lighter blue;"
+    "}"
+
+    ".greenstepbtn{"
+    //"    background: lighter green;"
+    "}";
+
+#endif // GUI_STYLES_H_INCLUDED

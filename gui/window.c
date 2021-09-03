@@ -16,6 +16,7 @@
  */
 
 #include "window.h"
+#include "styles.h"
 
 void init_logowindow()
 {
@@ -38,13 +39,13 @@ void init_mainwindow()
 	gtk_widget_set_size_request(mainwindow, 1024, 576);
 	gtk_window_set_resizable((GtkWindow *)mainwindow, TRUE);
 	gtk_window_set_titlebar((GtkWindow *)mainwindow, titlebar);
-	gtk_paned_set_wide_handle((GtkPaned*)mainpane, TRUE);
+	gtk_paned_set_wide_handle((GtkPaned *)mainpane, TRUE);
 	gtk_paned_set_start_child((GtkPaned *)mainpane, browser);
 	gtk_paned_set_end_child((GtkPaned *)mainpane, workarea);
-	gtk_paned_set_shrink_start_child((GtkPaned*)mainpane, TRUE);
-	gtk_paned_set_resize_start_child((GtkPaned*)mainpane, FALSE);
-	gtk_paned_set_shrink_end_child((GtkPaned*)mainpane, FALSE);
-	gtk_paned_set_resize_end_child((GtkPaned*)mainpane, FALSE);
+	gtk_paned_set_shrink_start_child((GtkPaned *)mainpane, TRUE);
+	gtk_paned_set_resize_start_child((GtkPaned *)mainpane, FALSE);
+	gtk_paned_set_shrink_end_child((GtkPaned *)mainpane, FALSE);
+	gtk_paned_set_resize_end_child((GtkPaned *)mainpane, FALSE);
 	gtk_window_set_child((GtkWindow *)mainwindow, mainpane);
 	gtk_window_destroy((GtkWindow *)logowindow);
 	gtk_window_present((GtkWindow *)mainwindow);
@@ -58,11 +59,16 @@ static void get_managers()
 	//displays = gdk_display_manager_list_displays(dispmanager);
 	//printf("%i\n", g_slist_length(displays));
 	display = gdk_display_get_default();
-    seat = gdk_display_get_default_seat(display);
-    cursor = gdk_seat_get_pointer(seat);
+	theme = gtk_icon_theme_get_for_display(display);
+	provider = gtk_css_provider_new();
+	gtk_css_provider_load_from_data(provider, styles, strlen(styles));
+	gtk_style_context_add_provider_for_display(display, (GtkStyleProvider*)provider, 600);
+	seat = gdk_display_get_default_seat(display);
+	cursor = gdk_seat_get_pointer(seat);
 	//display = g_slist_nth_data(displays, 0);
 	monitors = gdk_display_get_monitors(display);
 	monitor = g_list_model_get_item(monitors, 0);
+	//gtk_icon_theme_set_resource_path(theme, "@icons");
 	gdk_monitor_get_geometry(monitor, &geometry);
 	if (geometry.width >= 1024)
 		bwidth = 216;
@@ -81,7 +87,7 @@ static void check_projector()
 
 static bool set_surface()
 {
-    GtkNative *native = gtk_widget_get_native(mainwindow);
-    surface = gtk_native_get_surface(native);
-    return FALSE;
+	GtkNative *native = gtk_widget_get_native(mainwindow);
+	surface = gtk_native_get_surface(native);
+	return FALSE;
 }

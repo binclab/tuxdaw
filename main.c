@@ -13,8 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- *
- * main.c created 20 May 2020 at 12:14:49
  */
 
 #include "main.h"

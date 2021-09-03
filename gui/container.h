@@ -29,7 +29,7 @@ TuxdawPluginContainer *tuxdaw_plugin_container_new(bool custom);
 struct _TuxdawPluginContainer
 {
     GtkBox parent;
-    GtkWidget *header, *body, *dragger;
+    GtkWidget *header, *body, *title;
     GtkGesture *gesture;
 };
 
@@ -56,10 +56,10 @@ void plugin_drag_begin(GtkGestureDrag *gesture,
                gdouble start_x, gdouble start_y, TuxdawPluginContainer *plugin);
 
 void plugin_drag_update(GtkGestureDrag *gesture,
-               gdouble start_x, gdouble start_y, TuxdawPluginContainer *plugin);
+               gdouble offsetx, gdouble offsety, TuxdawPluginContainer *plugin);
 
 void plugin_drag_end(GtkGestureDrag *gesture,
-               gdouble start_x, gdouble start_y, TuxdawPluginContainer *plugin);
+               gdouble offsetx, gdouble offsety, TuxdawPluginContainer *plugin);
 
 double coordinate(double size);
 

@@ -1,0 +1,17 @@
+.vscode/*
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# Ninja
+.ninja_deps
+.ninja_log
+
+# CodeBlocks
+*.layout
+*.depend
+
+# generated directories
+.build
+builddir

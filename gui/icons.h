@@ -15,18 +15,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef GUI_WINDOW_H_
-#define GUI_WINDOW_H_
+#ifndef GUI_ICONS_H_INCLUDED
+#define GUI_ICONS_H_INCLUDED
 
-#include "shared.h"
+#include <gtk/gtk.h>
 
-void init_mainwindow();
-void init_logowindow();
+const char *runicon =
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    "<svg width=\"50\" height=\"50\" xmlns=\"http://www.w3.org/2000/svg\\\"> <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ --> "
+    "<g> <title>Layer 1</title> <circle stroke-width=\"3\" stroke=\"#1a1a1a\" fill=\"#dfdbd2\" r=\"16\" cy=\"25\" cx=\"25\"/>"
+    "<path stroke-width=\"0\" fill=\"#1a1a1a\" d=\"m25,9a16,16 0 0 0 0,32l0,-1.5a18,18 0 0 0 0,-29l0,-1.5z\"/> </g> </svg>";
 
-static void get_managers(), check_projector();
-
-static bool set_surface();
-GtkWidget *logowindow, *mainwindow, *extrawindow, *mainbox, *mainpane;
-GdkSurface *surface;
-
-#endif /* GUI_WINDOW_H_ */
+#endif // GUI_ICONS_H_INCLUDED
